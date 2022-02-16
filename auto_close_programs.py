@@ -16,7 +16,7 @@ CLOSING_TIME_FRAMES = [(time(5,00), time(11,00)), (time(20,00), time(23,00))]
 
 # ====================== Helper Methods ============================
 def is_in_closing_time():
-    current_time = datetime.now().strftime("%H:%M:%S")
+    current_time = datetime.now().time()
 
     for start_time, end_time in CLOSING_TIME_FRAMES:
         if start_time < end_time: 
@@ -31,10 +31,11 @@ def is_in_closing_time():
 # ====================== Main Program =============================
 if __name__ == "__main__":
     current_weekday = datetime.today().weekday()
-    
-    if current_weekday in CLOSING_DAYS:
-        if is_in_closing_time(): 
-            for process in (process for process in psutil.process_iter() if process.name() in PROGRAMS_TO_CLOSE):
-                process.kill()
+    while True:
+        if current_weekday in CLOSING_DAYS:
+            if is_in_closing_time(): 
+                for process in (process for process in psutil.process_iter() if process.name() in PROGRAMS_TO_CLOSE):
+                    process.kill()
+
 
 
