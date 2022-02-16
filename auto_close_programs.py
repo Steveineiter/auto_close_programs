@@ -29,10 +29,12 @@ def is_in_closing_time():
             return is_in_time_frame
 
 # ====================== Main Program =============================
-current_weekday = datetime.today().weekday()
-if current_weekday in CLOSING_DAYS:
-    if is_in_closing_time(): 
-        for process in (process for process in psutil.process_iter() if process.name() in PROGRAMS_TO_CLOSE):
-            process.kill()
+if __name__ == "__main__":
+    current_weekday = datetime.today().weekday()
+    
+    if current_weekday in CLOSING_DAYS:
+        if is_in_closing_time(): 
+            for process in (process for process in psutil.process_iter() if process.name() in PROGRAMS_TO_CLOSE):
+                process.kill()
 
 
