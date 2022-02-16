@@ -36,6 +36,8 @@ if __name__ == "__main__":
             if is_in_closing_time(): 
                 for process in (process for process in psutil.process_iter() if process.name() in PROGRAMS_TO_CLOSE):
                     process.kill()
+        else:
+            break
 
 
 
