@@ -38,6 +38,7 @@ if __name__ == "__main__":
                     process.kill()
         else:
             break
+        os_time.sleep(5)
 
 
 
